@@ -25,6 +25,8 @@
 # 3. 排序出现次数：排序操作本身不需要额外的空间
 # 4. 结果列表：result列表存储了最终的前k个高频数字，空间复杂度为O(k)
 
+import heapq
+
 class Solution(object):
     def topKFrequent(self, nums, k):
         """
@@ -32,26 +34,23 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        # 使用字典统计数字出现次数
-        time_dict=defaultdict(int) # 使用collections的defaultdict类创建了一个默认值为整数-的字典
-        for num in nums: # 遍历nums中的每个数字，对于每个数字num，将其在time_dict中的计数加1
-            time_dict[num]+=1
+        # 要统计元素出现频率
+        map_={} # nums[i]:对应出现的次数
+        for i in range(len(nums)):
+            map_[nums[i]]=map_.get(nums[i],0)+1
+        
+        # 对频率排序
+        # 定义一个小顶堆，大小为k
+        pri_que=[] # 小顶堆
 
-        # 更改字典，key为出现次数，value为相应的数字的集合
-        index_dict=defaultdict(list) # 创建另一个默认值为列表的字典index_dict，用于根据数字的出现次数将数字分组
-        for key in time_dict: # 遍历time_dict字典中的每个键（即nums中的每个数字）
-            index_dict[time_dict[key]].append(key) # 将每个数字key加到index_dict字典中，以它出现的次数为键
-        
-        # 排序
-        key=list(index_dict.keys()) # 获取index_dict字典中的所有键（即所有不同的出现次数），并且转换为列表
-        key.sort() # 对出现次数进行排序，这样key中的元素就是从低到高的顺序
-        result=[] # 初始化一个空列表，存储最终的前k个高频数字
-        cnt=0 # 初始化一个计数器，用于跟踪已经添加到result列表中的数字数量
-        # 获取前k项
-        while key and cnt!=k: # 使用一个循环来遍历所有出现次数列表
-            result+=index_dict[key[-1]] # 将当前出现次数下的所有数字添加到result列表中
-            # key[-1]表示当前遍历到的出现次数列表的最后一个元素，即最大的出现次数
-            cnt+=len(index_dict[key[-1]]) # 更新计数器cnt，加上当前出现次数下所有数字的数量
-            key.pop() # 从出现次数列表中移除当前遍历到的最大出现次数
-        
-        return result[0:k] # 返回result列表中的前k个元素
+        # 用固定大小为k的小顶堆，扫描所有频率的数值
+        for key, freq in map_.items():
+            heapq.heappush(pri_que,(freq, key))
+            if len(pri_que)>k: # 如果堆的大小大于k，则队列弹出，保证堆的大小一直为k
+                heapq.heappop(pri_que)
+
+        # 找出前k个高频元素，因为小顶堆先弹出的是最小的
+        result=[0]*k
+        for i in range(k-1,-1,-1):
+            result[i]=heapq.heappop(pri_que)[1]
+        return result
