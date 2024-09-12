@@ -8,7 +8,7 @@ This repository is organized into several categories based on the type of algori
 
 ### Categories
 
-- **Binary Trees**
+- **[Binary Trees](https://github.com/Althealam/Algorithm-Code-Record/tree/main/%E4%BA%8C%E5%8F%89%E6%A0%91)**
 - **Hash Tables**
 - **Strings**
 - **Arrays**
