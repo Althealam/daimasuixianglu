@@ -16,9 +16,9 @@ This repository is organized into several categories based on the type of algori
 - **Linked Lists**
 - **Dynamic Programming**
 - **Graphs**
-- **Others**
 
-- ### Contribution Guidelines
+
+### Contribution Guidelines
 
 If you find any issues with the solutions or have improvements to suggest, please feel free to contribute by submitting a Pull Request. All contributions are welcome and appreciated.
 
