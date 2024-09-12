@@ -8,14 +8,12 @@ This repository is organized into several categories based on the type of algori
 
 ### Categories
 
-- **[Binary Trees](https://github.com/Althealam/Algorithm-Code-Record/tree/main/%E4%BA%8C%E5%8F%89%E6%A0%91)**
-- **Hash Tables**
-- **Strings**
-- **Arrays**
-- **Stacks and Queues**
-- **Linked Lists**
-- **Dynamic Programming**
-- **Graphs**
+- **[Binary Trees](https://github.com/Althealam/Algorithm-Code-Record/tree/main/二叉树)**
+- **[Hash Tables](https://github.com/Althealam/Algorithm-Code-Record/tree/main/哈希表)**
+- **[Strings](https://github.com/Althealam/Algorithm-Code-Record/tree/main/字符串)**
+- **[Arrays](https://github.com/Althealam/Algorithm-Code-Record/tree/main/数组)**
+- **[Stacks and Queues](https://github.com/Althealam/Algorithm-Code-Record/tree/main/栈与队列)**
+- **[Linked Lists](https://github.com/Althealam/Algorithm-Code-Record/tree/main/链表)**
 
 
 ### Contribution Guidelines
