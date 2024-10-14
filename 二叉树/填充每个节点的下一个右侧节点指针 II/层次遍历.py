@@ -4,6 +4,22 @@
 
 # 时间复杂度：O(n)
 # 空间复杂度：O(n)
+
+# 例子：
+#     1
+#    / \
+#   2   3
+#  / \
+# 4   5
+
+# 1. 初始化：Q = deque([1])（根节点）
+# 2. 第一层
+# size = 1
+# node = Q.popleft() -> node = 1
+# node.next = Q[0] -> 1.next = None（因为1是最后一个节点）
+# Q.append(1.left) -> Q = deque([2])（加入左子节点2）
+# Q.append(1.right) -> Q = deque([2, 3])（加入右子节点3）
+
 """
 # Definition for a Node.
 class Node(object):
