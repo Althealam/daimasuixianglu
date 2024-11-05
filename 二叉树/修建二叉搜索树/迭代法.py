@@ -26,7 +26,7 @@ class Solution(object):
             return root
         # 处理头节点，让root移动到[L,R]范围内，注意是左闭右闭
         while root and (root.val<low or root.val>high):
-            if root.val<L:
+            if root.val<low:
                 root=root.right # 小于L往右走
             else:
                 root=root.left # 大于R往左走
