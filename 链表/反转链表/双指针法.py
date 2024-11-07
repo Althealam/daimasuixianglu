@@ -1,4 +1,4 @@
-# 方法一：双指针法
+# 方法一：双指针法（迭代法）
 # Definition for singly-linked list.
 # class ListNode(object):
 #     def __init__(self, val=0, next=None):
