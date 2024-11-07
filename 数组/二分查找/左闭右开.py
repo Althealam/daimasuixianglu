@@ -14,9 +14,9 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        left, right=0, len(nums)
-        while left<right:
-            mid=(right-left)//2+left
+        left, right=0, len(nums)-1
+        while left<=right:
+            mid=(left+right)//2
             num=nums[mid]
             if num==target:
                 return mid
