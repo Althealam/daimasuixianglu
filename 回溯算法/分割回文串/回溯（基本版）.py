@@ -4,7 +4,7 @@
 # 同时还需要startIndex来记录在字符串中下一次切割的位置（startIndex就是切割线）
 # 2. 递归终止的条件：切割线切到了字符串最后面，说明找到了一种切割方法
 # 3. 单层递归的逻辑：注意需要判断回文子串
-# 难点：1. 切割问题可以抽象为组合问题 2. 如何模拟那些切割线 3. 切割问题中递归如何终止 4. 在递归循环中如何截取子串 5. 如何判断回文
+# 难点：1. 切割问题可以抽象为组合问题 2. 如何模拟那些切割线（startIndex） 3. 切割问题中递归如何终止 4. 在递归循环中如何截取子串（s[startIndex,i+1]） 5. 如何判断回文（is_palindrome)
 
 # 时间复杂度：
 # 1. 回溯过程
@@ -33,18 +33,23 @@ class Solution(object):
         return result
 
     def backstracking(self,startIndex,result,path,s):
+        # 如果startIndex==len(s)的时候，说明搜索到了叶子结点，开始需要收集结果
+        # 终止条件
         if startIndex==len(s):
             result.append(path[:])
             return
-        # 单层递归逻辑
-        for i in range(startIndex,len(s)):
-            # 比其他的组合问题多了一步判断
+        # 单层递归逻辑（利用for循环进行横向遍历，相当于对需要切割的子串进行切割）
+        for i in range(startIndex,len(s)): # 需要切割的子串就是s[startIndex,len(s)-1]
+            # 比其他的组合问题多了一步判断，判断是否是回文的
             if self.is_palindrome(s,startIndex,i):
                 path.append(s[startIndex:i+1])
-                self.backstracking(i+1,result,path,s)
-                path.pop() # 回溯
+                self.backstracking(i+1,result,path,s) # 下一层的起始位置是i+1
+                path.pop() # 回溯（回溯的过程是放在backstracking里面的）
             
     def is_palindrome(self,s,start,end):
+        """
+        判断是否为回文子串，也就是判断s[end]是否等于s[start]
+        """
         i=int(start)
         j=int(end)
         while i<j:
