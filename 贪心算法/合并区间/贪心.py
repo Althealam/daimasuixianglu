@@ -37,6 +37,9 @@ class Solution(object):
                 result.append(intervals[i])
         return result
 
-                
+solution=Solution()
+intervals= [[1,3],[2,6],[8,10],[15,18]]   
+result=solution.merge(intervals)
+      
                 
         
