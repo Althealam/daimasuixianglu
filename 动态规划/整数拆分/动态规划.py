@@ -1,10 +1,11 @@
 # 分析：将数字n拆成m个数，并且希望这m个数尽可能的数值近似相等
 # 动态规划五部曲
-# 1. dp数组：分拆数字i，可以得到的最大乘积为dp[i]
+# 1. dp数组：表示将正整数i拆分成至少两个正整数的和之后，这些正整数的最大乘积
 # 2. 递推公式：
-# 拆成两个数：对i的所有情况进行遍历，拆分后得到的为jx(i-j)
-# 拆成两个数以上：jxdp[i-j]
-# dp[i]=max(jx(i-j),jxdp[i-j],dp[i])
+# 假设对正整数i拆分出的第一个正整数是j，则有以下两种方案：
+# 1）将i拆分成j和i-j的和，并且i-j不再继续拆分成多个正整数，此时的乘积是jx(i-j)
+# 2）将i拆分成j和i-j的和，并且i-j继续拆分成多个正整数，此时的乘积是jxdp[i-j]
+# 当j固定时，有dp[i]=max(jx(i-j),jxdp[i-j])
 # 3. 初始化：dp[0]和dp[1]都为0（需要拆分为k个正整数的和，并且k>=2），dp[2]=1
 # 4. 遍历顺序：dp[i]是依靠dp[i-j]的状态，因此遍历i是从前向后去遍历的，先有dp[i-j]再有dp[i]
 
@@ -29,12 +30,6 @@ class Solution(object):
         dp[2]=1 # 初始化dp[2]为1，因为当n=2时，只有一个切割方式1+1=2，乘积为1
 
         for i in range(3,n+1):
-            # 遍历所有可能的切割点
-            for j in range(1,n+1):
-                # 计算切割点j与剩余部分i-j的乘积，并与之前的结果进行比较，取最大值
-                dp[i]=max(dp[i],(i-j)*j,dp[i-j]*j)
-        return dp[n] # 返回最终的计算结果
-    
-solution=Solution()
-n=10
-result=solution.integerBreak(n)
+            for j in range(i):
+                dp[i]=max(dp[i],j*(i-j),j*dp[i-j])
+        return dp[n]
