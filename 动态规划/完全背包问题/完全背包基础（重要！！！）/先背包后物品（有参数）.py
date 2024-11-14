@@ -8,6 +8,7 @@ def test_CompletePack(weight,value,bagWeight):
         for j in range(len(weight)): # 遍历物品
             if j-weight[i]>=0:
                 dp[j]=max(dp[j],dp[j-weight[i]]+value[i])
+    return dp[bagWeight]
     
 if __name__=='__main__':
     weight=[1,3,4]
