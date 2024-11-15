@@ -24,7 +24,7 @@ class Solution(object):
         dp[0]=1
         # 遍历物品
         for i in range(len(coins)):
-            for j in range(coins[i],amount+1):
+            for j in range(coins[i],amount+1): # 后遍历背包
                 dp[j]+=dp[j-coins[i]]
         return dp[amount]
         
