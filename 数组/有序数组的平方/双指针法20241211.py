@@ -13,7 +13,7 @@ class Solution(object):
         """
         left, right=0, len(nums)-1
         i=len(nums)-1
-        result=[float('inf')]*len(nums) # 定义结果集，存放有序数组的平方（递减数组）
+        result=[float('inf')]*len(nums) # 定义结果集，存放有序数组的平方（递增数组）
         while left<=right:
             if nums[left]**2>=nums[right]**2:
                 result[i]=nums[left]**2

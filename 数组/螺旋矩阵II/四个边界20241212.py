@@ -27,7 +27,7 @@ class Solution(object):
                 matrix[i][right]=num
                 num+=1
             right-=1
-            # 从右到左遍历下边界
+            # 从右到左遍历下边界（这里必须是left-1，否则会和“从下到上遍历左边界”时的bottom重复）
             for i in range(right,left-1,-1):
                 matrix[bottom][i]=num
                 num+=1
