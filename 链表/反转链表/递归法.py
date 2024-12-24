@@ -22,3 +22,4 @@ class Solution(object):
         temp=cur.next
         cur.next=pre
         return self.reverse(temp,cur)
+
