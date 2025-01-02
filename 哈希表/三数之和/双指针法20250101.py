@@ -5,7 +5,7 @@
 # 1. nums[i]+nums[left]+nums[right]<0: left+=1
 # 2. nums[i]+nums[left]+nums[right]=0: result.append([i,left,right])
 # 3. nums[i]+nums[left]+nums[right]>0: right-=1
-# 注意点： 1. a+b+c=0 2. 不重复的三元组
+# 注意点： 1. a+b+c=0（a、b、c可以是重复的） 2. 不重复的三元组
 
 # 时间复杂度：
 # 1. 排序操作：O(nlogn)
@@ -25,24 +25,27 @@ class Solution(object):
         """
         result=[]
         nums.sort()
+
         for i in range(len(nums)):
             if nums[i]>0:
                 return result
             left=i+1
             right=len(nums)-1
+
             # 1. 去重i
+            # nums[i]一定是和nums[i-1]比较，而不是和nums[i+1]比较，因为可能会需要两个相同元素的情况
             if nums[i]==nums[i-1] and i>0:
-                continue
+                continue # 跳过本次循环
+
             while left<right:
                 sum=nums[i]+nums[left]+nums[right]
                 if sum==0:
                     result.append([nums[i],nums[left],nums[right]])
-                    # 找到了，则开始去重
-                    # 2. 去重right（right要往左边找）
-                    while nums[right]==nums[right-1] and left<right:
+                    # 2. 去重right
+                    while nums[right]==nums[right-1] and right>left:
                         right-=1
-                    # 3. 去重left（left要往右边找）
-                    while nums[left]==nums[left+1] and left<right:
+                    # 3. 去重left
+                    while nums[left]==nums[left+1] and right>left:
                         left+=1
                     right-=1
                     left+=1
@@ -51,7 +54,4 @@ class Solution(object):
                 elif sum>0:
                     right-=1
         return result
-                
-
-
-        
+            
