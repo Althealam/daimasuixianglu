@@ -4,9 +4,13 @@
 # 每次遍历字符串的时候，都用fast来覆盖slow
 # 如果slow和slow-1相等，则将slow回退一个，并且同样的用fast覆盖
 
+# 用双指针模拟栈：slow+=1模拟入栈；slow-=1模拟出栈
+# 用slow表示栈顶的元素，用fast来遍历字符串
+
 # 时间复杂度：O(n)
 # 空间复杂度：O(1)
 
+s="abbaca"
 class Solution(object):
     def removeDuplicates(self, s):
         """
@@ -34,4 +38,12 @@ class Solution(object):
                 slow+=1
             # 继续移动fast指针
             fast+=1
+            print(f'round_{fast}')
+            print(result)
+            print(slow)
+            print(fast)
         return ''.join(result[0:slow])
+    
+solution=Solution()
+result=solution.removeDuplicates(s)
+print(result)
