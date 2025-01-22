@@ -35,5 +35,9 @@ class Solution(object):
             # print(level[-1])
         return result
 
+# 注意：
+# 1. array[-1]表示访问array的最后一个元素
+# 2. array[:-1]表示从列表的开始到倒数第二个元素
+# 3. array[::-1]表示从列表的最后一个元素开始，以步长为-1选取元素
 
         
