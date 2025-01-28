@@ -11,6 +11,7 @@ class TreeNode(object):
 class Solution(object):
     def traversal(self, cur, path, result):
         path.append(cur.val) # 中
+        
         # 到达了叶子节点，就把这条路径做连接处理，然后将这条路径添加到结果集中
         if not cur.left and not cur.right:
             sPath='->'.join(map(str,path)) # 把path处理成字符串
