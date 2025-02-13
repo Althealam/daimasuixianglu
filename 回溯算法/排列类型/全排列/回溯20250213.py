@@ -1,4 +1,4 @@
-# 1. 递归函数的参数和返回值：path, result, startIndex, nums
+# 1. 递归函数的参数和返回值：path, result, nums
 # 2. 终止条件：if len(path)==len(nums): result.append(path[:])
 # 3. 单层搜索的逻辑
 # 剪枝：树枝上去重（前提是这个nums是没有重复元素的）：if nums[i] in path: return 
@@ -23,7 +23,7 @@ class Solution(object):
         self.backtracking([],result, 0, nums)
         return result
     
-    def backtracking(self, path, result, startIndex, nums):
+    def backtracking(self, path, result, nums):
         if len(path)==len(nums):
             result.append(path[:])
             return 
