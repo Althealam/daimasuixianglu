@@ -32,7 +32,6 @@ class Solution(object):
             return 0
         
         # 4. 如果最小的剩余油量是小于0的，那么就不是从0开始
-        start=0
         curSum=0 # 目前的总油量，需要确保从start加油站开始的路途中的总油量一直是大于等于0的
         for i in range(0,len(rest)):
             curSum+=rest[i]
