@@ -47,6 +47,7 @@ class Solution(object):
                     # 3. 去重left
                     while nums[left]==nums[left+1] and right>left:
                         left+=1
+                    # 注意，需要移动right和left
                     right-=1
                     left+=1
                 elif sum<0:
