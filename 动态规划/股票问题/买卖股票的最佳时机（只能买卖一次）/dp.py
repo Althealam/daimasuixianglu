@@ -28,4 +28,7 @@ class Solution(object):
             dp[i][0]=max(dp[i-1][0],-prices[i])
             dp[i][1]=max(dp[i-1][1],prices[i]+dp[i-1][0])
         return max(dp[length-1][0],dp[length-1][1])
-        
+
+solution=Solution()
+prices=[7,1,5,3,6,4]
+print(solution.maxProfit(prices))
