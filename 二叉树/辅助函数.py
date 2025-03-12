@@ -1,5 +1,4 @@
 from collections import deque
-
 # 定义二叉树节点类
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -7,31 +6,6 @@ class TreeNode:
         self.left = left
         self.right = right
 
-# 定义解决方法
-class Solution(object):
-    def averageOfLevels(self, root):
-        """
-        :type root: Optional[TreeNode]
-        :rtype: List[float]
-        """
-        if not root:
-            return []
-
-        # 修正此处，直接使用 deque
-        queue = deque([root])
-        # 或者可以使用queue=[root] 然后后面用node=queue.pop(0)
-        result = []
-        while queue:
-            level=[]
-            for _ in range(len(queue)):
-                node = queue.popleft()
-                level.append(node.val)
-                if node.left:
-                    queue.append(node.left)
-                if node.right:
-                    queue.append(node.right)
-            result.append(sum(level) / len(level))
-        return result
 
 # 辅助函数：将列表转换为二叉树（通过层路遍历将列表转换为二叉树，每次遍历一个节点就把一个节点放到队列里，然后弹出队列的元素并且依次添加其孩子节点（每次弹出一个节点的同时找到其孩子节点）
 def list_to_tree(lst):
@@ -55,10 +29,26 @@ def list_to_tree(lst):
         i += 1
     return root
 
-# 测试代码
-solution = Solution()
-input_list = [3, 9, 20, None, None, 15, 7]
-root = list_to_tree(input_list)
-output = solution.averageOfLevels(root)
-print(output)
-
+# 层序遍历输出二叉树的值
+class Solution(object):
+    def levelOrder(self, root):
+        """
+        :type root: Optional[TreeNode]
+        :rtype: List[List[int]]
+        """
+        if not root:
+            return []
+        result=[]
+        queue=collections.deque([root]) # 用来存元素的队列
+        while queue: 
+            level=[] # 该层的元素值
+            for _ in range(len(queue)):
+                cur=queue.popleft()
+                level.append(cur.val)
+                # 开始放入孩子节点，注意不是放入孩子节点的值，而是放入节点
+                if cur.left:
+                    queue.append(cur.left)
+                if cur.right:
+                    queue.append(cur.right)
+            result.append(level) 
+        return result       

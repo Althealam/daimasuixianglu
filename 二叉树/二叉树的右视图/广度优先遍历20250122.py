@@ -10,6 +10,7 @@
 #         self.left = left
 #         self.right = right
 from collections import deque
+import collections
 class Solution(object):
     def rightSideView(self, root):
         """
@@ -19,7 +20,9 @@ class Solution(object):
         if not root:
             return []
         result=[]
-        queue=collections.deque([root])
+        queue=collections.deque([root]) 
+        # 如果使用queue=collections.deque([root]) 需要使用queue.popleft()
+        # 如果使用queue=[root] 需要使用queue.pop(0) 表示弹出第一个元素，这个是队列
         while queue:
             size=len(queue)
             for i in range(size):

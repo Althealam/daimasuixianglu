@@ -21,6 +21,7 @@
 #         self.left = left
 #         self.right = right
 
+from collections import defaultdict
 class Solution(object):
     def __init__(self):
         self.vector=[]
@@ -42,7 +43,7 @@ class Solution(object):
         self.traversal(root)
 
         # 统计每个元素出现的频率
-        cnt=defaultdict(int)
+        cnt=defaultdict(int) # 可以用cnt={}来替代
         result=[]
         for item in self.vector:
             if item not in cnt:

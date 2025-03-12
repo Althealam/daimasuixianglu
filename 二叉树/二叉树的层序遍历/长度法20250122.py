@@ -1,15 +1,16 @@
 # 思路：定义队列，然后每次遍历孩子节点的时候就把孩子节点放到队列中，最后弹出队列中的元素即可
 # Definition for a binary tree node.
-# class TreeNode(object):
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode(object):
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 # 时间复杂度：O(n)
 # 空间复杂度：O(n) 由queue和result决定，queue在最坏情况下会存储二叉树最宽一层的节点，result存储了每个层的节点值
 
 from collections import deque
+import collections
 class Solution(object):
     def levelOrder(self, root):
         """
@@ -32,3 +33,13 @@ class Solution(object):
                     queue.append(cur.right)
             result.append(level) 
         return result       
+    
+
+root=TreeNode(1)
+root.left=TreeNode(2)
+root.right=TreeNode(3)
+root.left.left=TreeNode(4)
+root.right.right=TreeNode(5)
+sol=Solution()
+result=sol.levelOrder(root)
+print(result)
