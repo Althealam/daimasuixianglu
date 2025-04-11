@@ -5,6 +5,7 @@
 # dp[i]=max(dp[i-1], dp[i-1]+nums[i])
 # 3. 初始化：dp[0]=nums[0]
 # 4. 遍历顺序：从前向后遍历
+# 本题其实相当于：dp[i]=max(dp[i-1], 0)+nums[i]
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         dp=[0]*len(nums)
