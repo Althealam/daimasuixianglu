@@ -11,16 +11,17 @@ class Solution:
         if not root:
             return []
         result=[]
-        # 递归法
         def traversal(root, depth):
-            # 判断是否达到叶子节点
+            # 到达新的一层，加入新的空数组
             if len(result)==depth:
                 result.append([])
-            # 在第depth层加入root的节点值
             result[depth].append(root.val)
-            # 加入孩子节点的值
+            # 判断是否有孩子节点
             if root.children:
-                for i in range(len(root.children)): # 遍历孩子节点
+                # 遍历孩子节点
+                for i in range(len(root.children)):
                     traversal(root.children[i], depth+1)
         traversal(root, 0)
         return result
+
+            
