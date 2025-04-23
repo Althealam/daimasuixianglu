@@ -20,7 +20,7 @@ class Solution:
                 cur=cur.left # 左
             else: # 遇到空节点
                 cur=stack.pop() # 中
-                if pre is not None and pre.val>cur.val: # 验证二叉搜索树
+                if pre is not None and pre.val>=cur.val: # 验证二叉搜索树
                     return False
                 pre=cur # 保存上一个节点
                 cur=cur.right # 递归下一个节点
