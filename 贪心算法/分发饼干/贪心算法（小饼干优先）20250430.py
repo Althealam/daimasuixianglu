@@ -11,7 +11,7 @@ class Solution:
         s.sort()
         index=0 # 遍历的胃口索引
         for i in range(len(s)): # 遍历饼干
-            if index>=0 and s[i]>=g[index]:
+            if index<len(g) and s[i]>=g[index]:
                 index+=1
         return index
             
