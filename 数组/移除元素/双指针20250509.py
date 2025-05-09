@@ -7,11 +7,11 @@
 # 空间复杂度：O(1)
 class Solution:
     def removeElement(self, nums: List[int], val: int) -> int:
-        slow, fast=0, 0
-        while fast<len(nums):
+        slow=0
+        fast=0
+        while fast<len(nums): # 如果fast达到len(nums)，那么nums会越界
             if nums[fast]!=val:
                 nums[slow]=nums[fast]
-                slow+=1
+                slow+=1 # 说明此时已经填充了新数组的一个下标，需要到下一个下标去
             fast+=1
         return slow
-        
