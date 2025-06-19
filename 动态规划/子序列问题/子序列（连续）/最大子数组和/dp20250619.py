@@ -5,7 +5,7 @@ nums = list(map(int, input().split()))
 # （1）不重新开始：dp[i-1]+nums[i]
 # （2）重新开始：nums[i]
 # dp[i]=max(dp[i-1]+nums[i], nums[i])
-# 3. 初始化：全部初始化为0
+# 3. 初始化：全部初始化为0 result=nums[0]
 def ditui(nums):
     if len(nums)==1:
         return nums[0]
