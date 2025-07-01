@@ -27,7 +27,7 @@ class Solution:
                 shiftdown(nums, largest, n)
         
         # Heapify
-        # 从最后一个节点开始调整，构造最大堆
+        # 从最后一个节点开始调整，构造最大堆（这个步骤输出的数组是递增的）
         n = len(nums)
         for i in range(n//2-1, -1, -1): # 最后一个非叶子节点的下标是n//2-1
             shiftdown(nums, i, n)
