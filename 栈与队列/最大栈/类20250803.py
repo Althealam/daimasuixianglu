@@ -1,0 +1,60 @@
+import heapq
+class MaxStack:
+    def __init__(self):
+        self.stack = [] # 存储栈元素的列表，每个元素是[值，索引]的形式
+        self.heap = [] # 最小堆
+        self.removed = set() # 集合，用于标记已经删除但是尚未从数据结构中清理的元素索引
+        self.idx = 0 # 自增索引，用于唯一标识每个入栈元素
+    
+    def push(self, x):
+        """将元素x压入栈中"""
+        self.stack.append([x, self.idx]) # 栈中添加元素x，并且记录其索引
+        heapq.heappush(self.heap, [-x, -self.idx]) # 将[-x, -self.idx]推入堆中，用负值实现最大堆的效果
+        self.idx+=1
+    
+    def pop(self):
+        """移除栈顶元素并且返回这个元素"""
+        # 先清理栈中已经标记为删除的元素
+        while self.stack and self.stack[-1][1] in self.removed:
+            self.stack.pop()
+        num, i = self.stack.pop() # 弹出栈顶元素，并记录其索引
+        self.removed.add(i)
+        return num
+    
+    def top(self):
+        """返回栈顶元素并且不需要移除"""
+        # 清理栈顶已经标记为删除的元素
+        while self.stack and self.stack[-1][1] in self.removed:
+            self.stack.pop()
+        return self.stack[-1][0]
+
+    def peekMax(self):
+        """检索并返回栈中的最大元素，不需要移除"""
+        # 清理堆顶已经标记为删除的元素
+        while self.heap and -self.heap[0][1] in self.removed:
+            heapq.heappop(self.heap)
+        return -self.heap[0][0]
+
+    def popMax(self):
+        """检索并返回栈中的最大元素，需要移除"""
+        # 清理堆顶已经标记为删除的元素
+        while self.heap and -self.heap[0][1] in self.removed:
+            heapq.heappop(self.heap)
+        # 弹出堆顶元素，记录其索引到removed集合中
+        num, i = heapq.heappop(self.heap)
+        self.removed.add(-i)
+        return -num
+
+ms = MaxStack()
+
+ms.push(5)
+ms.push(1)
+ms.push(5)
+
+print(ms.pop()) # 栈顶元素
+print(ms.peekMax()) # 当前最大值
+print(ms.popMax()) # 移除并返回最大值
+print(ms.top()) # 栈顶元素
+print(ms.peekMax()) 
+print(ms.pop())
+print(ms.pop())
