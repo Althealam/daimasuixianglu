@@ -1,0 +1,13 @@
+class Solution:
+    def intersection(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        hash_map_nums1 = [0]*1001
+        hash_map_nums2 = [0]*1001
+        for num in nums1:
+            hash_map_nums1[num]+=1
+        for num in nums2:
+            hash_map_nums2[num]+=1
+        ans = []
+        for i in range(1001):
+            if hash_map_nums1[i]*hash_map_nums2[i]>0:
+                ans.append(i)
+        return ans
