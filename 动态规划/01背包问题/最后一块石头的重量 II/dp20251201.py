@@ -7,12 +7,10 @@
 # return: sum(nums)-2*dp[target]
 class Solution:
     def lastStoneWeightII(self, stones: List[int]) -> int:
-        if sum(stones)%2==0:
-            return 0
         target = sum(stones)//2
         dp = [0]*(target+1)
-        for i in range(len(stones)): # iterate stone
+        for stone in stones: # iterate stone
             for j in range(target, -1, -1): # iterate volume
-                if j>=stones[i]:
-                    dp[j] = max(dp[j-stones[i]]+stones[i], dp[j])
-        return sum(stones)-2*dp[target]        
+                if j>=stone:
+                    dp[j] = max(dp[j-stone]+stone, dp[j])
+        return sum(stones)-2*dp[-1]
