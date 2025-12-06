@@ -1,8 +1,12 @@
 # 1. definition: dp[i][j] means whether the s[i..j] is palindromic substrings, if yes then true, otherwise false
 # 2. formula: 
-# if s[i-1]==s[j-1]: dp[i][j] = True if dp[i-1][j-1]==True
+# if s[i]==s[j]:
+# (1) i==j: True
+# (2) j-i==1: True
+# (3) dp[i][j] = dp[i+1][j-1]
 # 3. initialization: dp=[[False]*(len(s)+1) for _ in range(len(s)+1)]
 # dp[0][0]=True
+# 4. order: i+1->i, j-1->j
 
 # 连续回文子串的数量
 class Solution:
